@@ -1,0 +1,1 @@
+# porsentaje_oracion
