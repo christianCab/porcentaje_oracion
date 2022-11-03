@@ -1,4 +1,4 @@
-# porsentaje_oracion
+# porcentaje_oracion
 Problema 5.
 Realizar una aplicación para hacer una estadística de una oración. La aplicación deberá solicitar el ingreso
 de una secuencia de caracteres terminada en punto, y luego mostrar en pantalla que porcentaje de los
