@@ -1,0 +1,81 @@
+program PROBLEMA_5;
+{$codepage utf8}
+var
+  oracion:char;
+  sumaV,sumaC,sumaD,sumaS,i:real;
+  vocales,consonantes,digitos,simbolos:boolean;
+function esVocal(car:char):boolean;
+  var
+    pertenece:boolean;
+   begin
+    case car of
+      'a','e','i','o','u','A','E','I','O','U':pertenece:=true;
+    else
+      pertenece:=false;
+    end;
+    esVocal:=pertenece;
+   end;
+function esConsonante(car:char):boolean;
+var
+  vocal:boolean;
+ begin
+  vocal:=esVocal(car);
+  esConsonante:= not (vocal) and (car > 'a') and (car < 'z') or (car > 'A') and (car < 'Z');
+ end;
+ 
+function esDigito(car:char):boolean;
+  begin
+    esDigito:=(car>='0') and (car<='9');
+  end;
+
+function esSimbolo(car:char):boolean;
+  var
+    vocal,consonante,digito:boolean;
+  begin
+    vocal:=esVocal(car);
+    consonante:=esConsonante(car);
+    digito:=esDigito(car);
+    esSimbolo:=not(vocal) and not(consonante) and not(digito);
+  end;
+
+procedure porsentaje(sumat,suma1,suma2,suma3,suma4:real);
+  var
+    porV,porC,porD,porS:real;
+  begin
+    porV:=(suma1*100)/sumat;
+    porC:=(suma2*100)/sumat;
+    porD:=(suma3*100)/sumat;
+    porS:=(suma4*100)/sumat;
+    Writeln('Total de caracteres leidos: ',sumat:0:0);
+    Writeln('Vocales ',suma1:0:0,' representa el ',porV :0:2,' %');
+    Writeln('Consonantes ',suma2:0:0,' representa el ',porC :0:2,' %');
+    Writeln('Digitos ',suma3:0:0,' representa el ',porD :0:2,' %');
+    Writeln('Simbolos ',suma4:0:0,' representa el ',porS :0:2,' %');
+  end;
+
+begin
+  writeln('Ingresar la oración (finalizando con el .): ');
+  i:=0;
+  sumaV:=0;
+  sumaC:=0;
+  sumaD:=0;
+  sumaS:=0;
+  repeat
+    read(oracion);
+    vocales:=esVocal(oracion);
+    consonantes:=esConsonante(oracion);
+    digitos:=esDigito(oracion);
+    simbolos:=esSimbolo(oracion);
+    if(vocales)then
+      sumaV:=sumaV+1;
+    if(consonantes)then
+      sumaC:=sumaC+1;
+    if(digitos)then
+      sumaD:=sumaD+1;
+    if(simbolos)then
+      sumaS:=sumaS+1;
+    i:= i+1;
+  until (oracion='.');
+porsentaje(i,sumaV,sumaC,sumaD,sumaS);
+  readln;
+end.
